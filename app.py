@@ -48,10 +48,9 @@ st.markdown("<div class='subtitle'>Find movies you'll love in seconds</div>", un
 
 # ---------- LOAD DATA ----------
 def download_file(file_id, filename):
-    if not os.path.exists(filename):
         url = f"https://drive.google.com/uc?id={file_id}"
         gdown.download(url, filename, quiet=False)
-   
+
 @st.cache_resource
 def load_data():
     # correct Google Drive links (IMPORTANT)
