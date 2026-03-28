@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import pickle
 import requests
+import gdown
 
 
 st.set_page_config(page_title="Movie Recommender", page_icon="🎬", layout="wide")
@@ -46,21 +47,16 @@ st.markdown("<div class='subtitle'>Find movies you'll love in seconds</div>", un
 
 
 # ---------- LOAD DATA ----------
-def download_file(url, filename):
-    try:
-        if not os.path.exists(filename):
-            r = requests.get(url)
-            r.raise_for_status()
-            with open(filename, 'wb') as f:
-                f.write(r.content)
-    except Exception as e:
-        st.error(f"Error downloading {filename}: {e}")
-
+def download_file(file_id, filename):
+    if not os.path.exists(filename):
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, filename, quiet=False)
+   
 @st.cache_resource
 def load_data():
     # correct Google Drive links (IMPORTANT)
-    movie_url = "https://drive.google.com/uc?id=1eKCmH-a0qQNqdUVIdwJuZ5GzpzIkCi3x"
-    similarity_url = "https://drive.google.com/uc?id=1kj3sKQqqYGpaarA10dVeVv-8IifGwP0V"
+    movie_url = "1eKCmH-a0qQNqdUVIdwJuZ5GzpzIkCi3x"
+    similarity_url = "1kj3sKQqqYGpaarA10dVeVv-8IifGwP0V"
 
     # download only if not exists
     download_file(movie_url, "movie_list.pkl")
