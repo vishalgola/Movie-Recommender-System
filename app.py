@@ -3,6 +3,7 @@ import os
 import pickle
 import requests
 
+
 st.set_page_config(page_title="Movie Recommender", page_icon="🎬", layout="wide")
 
 # ---------- CUSTOM CSS ----------
@@ -43,24 +44,45 @@ body {
 st.markdown("<div class='title'>🎬 Movie Recommender</div>", unsafe_allow_html=True)
 st.markdown("<div class='subtitle'>Find movies you'll love in seconds</div>", unsafe_allow_html=True)
 
+
 # ---------- LOAD DATA ----------
 def download_file(url, filename):
-    if not os.path.exists(filename):
-        print(f"Downloading {filename}...")
-        r = requests.get(url)
-        with open(filename, 'wb') as f:
-            f.write(r.content)
+    try:
+        if not os.path.exists(filename):
+            r = requests.get(url)
+            r.raise_for_status()
+            with open(filename, 'wb') as f:
+                f.write(r.content)
+    except Exception as e:
+        st.error(f"Error downloading {filename}: {e}")
 
-# 🔥 Replace with your actual links
-movie_url = "https://drive.google.com/file/d/1eKCmH-a0qQNqdUVIdwJuZ5GzpzIkCi3x/view?usp=drive_link"
-similarity_url = "https://drive.google.com/file/d/1kj3sKQqqYGpaarA10dVeVv-8IifGwP0V/view?usp=drive_link"
+@st.cache_resource
+def load_data():
+    # correct Google Drive links (IMPORTANT)
+    movie_url = "https://drive.google.com/uc?id=1eKCmH-a0qQNqdUVIdwJuZ5GzpzIkCi3x"
+    similarity_url = "https://drive.google.com/uc?id=1kj3sKQqqYGpaarA10dVeVv-8IifGwP0V"
 
-download_file(movie_url, "movie_list.pkl")
-download_file(similarity_url, "similarity.pkl")
-movies = pickle.load(open('movie_list.pkl', 'rb'))
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+    # download only if not exists
+    download_file(movie_url, "movie_list.pkl")
+    download_file(similarity_url, "similarity.pkl")
+
+    # load files
+    movies = pickle.load(open('movie_list.pkl', 'rb'))
+    similarity = pickle.load(open('similarity.pkl', 'rb'))
+
+    return movies, similarity
+
+# # 🔥 Replace with your actual links
+# movie_url = "https://drive.google.com/uc?id=1eKCmH-a0qQNqdUVIdwJuZ5GzpzIkCi3x"
+# similarity_url = "https://drive.google.com/uc?id=1kj3sKQqqYGpaarA10dVeVv-8IifGwP0V"
+#
+# download_file(movie_url, "movie_list.pkl")
+# download_file(similarity_url, "similarity.pkl")
+# movies = pickle.load(open('movie_list.pkl', 'rb'))
+# similarity = pickle.load(open('similarity.pkl', 'rb'))
 
 # ---------- SELECT ----------
+movies, similarity = load_data()
 movie_list = movies['title'].values
 selected_movie = st.selectbox("🔍 Choose a movie", movie_list)
 
