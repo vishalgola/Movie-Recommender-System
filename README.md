@@ -4,7 +4,7 @@ A content-based Movie Recommender System built using **Bag of Words** and **Cosi
 
 ---
 
-## 🚀 Live 
+## 🚀 Live Demo
 
 👉 **Try the App:** https://movie-recommender-system-11.streamlit.app/
 
