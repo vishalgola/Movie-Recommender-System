@@ -36,6 +36,7 @@ This project takes a different approach:
 * **Pandas / NumPy**
 * **Scikit-learn**
 * **TMDB API** (for movie posters)
+* **Google Drive** (for storing data and model pickle files) 
 
 ---
 
