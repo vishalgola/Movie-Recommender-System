@@ -53,7 +53,7 @@ def download_file(file_id, filename):
 
 @st.cache_resource
 def load_data():
-    # correct Google Drive links (IMPORTANT)
+    
     movie_url = "1eKCmH-a0qQNqdUVIdwJuZ5GzpzIkCi3x"
     similarity_url = "1kj3sKQqqYGpaarA10dVeVv-8IifGwP0V"
 
