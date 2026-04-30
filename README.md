@@ -17,7 +17,7 @@ A content-based Movie Recommender System built using **Bag of Words** and **Cosi
 
 ---
 
-
+## 🧠 Problem Statement
 
 Most recommender systems use **TF-IDF** or **SBERT** without considering whether the dataset supports such techniques.
 
