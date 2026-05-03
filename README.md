@@ -10,7 +10,7 @@ A content-based Movie Recommender System built using **Bag of Words** and **Cosi
 
 ---
 
-
+## 📸 Demo Preview
 
 <img width="941" height="438" alt="image" src="https://github.com/user-attachments/assets/5ed65f78-b448-479a-9923-b1a9fc10711a" />
 
