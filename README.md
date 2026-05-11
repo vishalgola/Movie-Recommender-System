@@ -1,4 +1,4 @@
-# 🎬 Movie Recommender System
+
 
 A content-based Movie Recommender System built using **Bag of Words** and **Cosine Similarity**, designed with a focus on choosing the *right approach for the data* rather than blindly following complex models.
 
