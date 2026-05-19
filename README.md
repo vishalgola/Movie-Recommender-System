@@ -40,7 +40,7 @@ This project takes a different approach:
 
 ---
 
-## 🔍 Approach
+
 
 ### 1. Feature Engineering
 
