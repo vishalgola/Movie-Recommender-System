@@ -29,7 +29,6 @@ This project takes a different approach:
 
 ---
 
-## ⚙️ Tech Stack
 
 * **Python**
 * **Streamlit** (Deployment & UI)
